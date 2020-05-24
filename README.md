@@ -1,7 +1,7 @@
 Before Pulling this repo please make sure to have Laravel, Composer, and NodeJs in your system
 
-For this files to work please follow:
+For these files to work please follow:
 
 1. Create a folder to store this repo and open your terminal.
-2. Type in your terminal "composer require laravel/ui", "laravel new", "npm install", and "npm run dev" sequentially.
-3. Then clone this repository "git pull https://github.com/JCadiz2000/fin_book_08.git"
+2. Clone this repository "git clone https://github.com/DeveloperChink/fin_book_08.git"
+3. Type in your terminal  "laravel new -f", "composer require laravel/ui", "npm install", and "npm run dev" sequentially.
