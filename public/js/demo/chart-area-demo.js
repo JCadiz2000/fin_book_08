@@ -32,22 +32,37 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     datasets: [{
-      label: "Earnings",
+      label: "Savings",
       lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      backgroundColor: "rgba(28, 200, 138, 0.2)",
+      borderColor: "rgba(28, 200, 138, 1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(28, 200, 138, 1)",
+      pointBorderColor: "rgba(28, 200, 138, 1)",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(28, 200, 138, 1)",
+      pointHoverBorderColor: "rgba(28, 200, 138, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [20000,40000,20000,40000,20000,40000,20000,40000,20000,40000,20000,40000],
+    },{
+      label: "Expenses",
+      lineTension: 0.3,
+      backgroundColor: "rgba(231, 74, 59, 0.2)",
+      borderColor: "rgba(231, 74, 59, 1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(231, 74, 59, 1)",
+      pointBorderColor: "rgba(231, 74, 59, 1)",
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: "rgba(231, 74, 59, 1)",
+      pointHoverBorderColor: "rgba(231, 74, 59, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [10000,0,10000,0,10000,0,10000,0,10000,0,10000,0],
     }],
+    
   },
   options: {
     maintainAspectRatio: false,
@@ -58,7 +73,7 @@ var myLineChart = new Chart(ctx, {
         top: 25,
         bottom: 0
       }
-    },
+    },  
     scales: {
       xAxes: [{
         time: {
@@ -69,7 +84,7 @@ var myLineChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 12
         }
       }],
       yAxes: [{
@@ -78,7 +93,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return '₱' + number_format(value);
           }
         },
         gridLines: {
@@ -110,7 +125,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
         }
       }
     }
