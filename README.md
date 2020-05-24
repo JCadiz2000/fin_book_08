@@ -4,4 +4,4 @@ For these files to work please follow:
 
 1. Create a folder to store this repo and open your terminal.
 2. Clone this repository "git clone https://github.com/DeveloperChink/fin_book_08.git"
-3. Type in your terminal  "laravel new -f", "composer require laravel/ui", "npm install", and "npm run dev" sequentially.
+3. Type in your terminal  "laravel new -f", "git restore -W .", "composer require laravel/ui", "npm install", and "npm run dev" sequentially.
