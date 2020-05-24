@@ -4,3 +4,4 @@ For this files to work please follow:
 
 1. Create a folder to store this repo and open your terminal.
 2. Type in your terminal "composer require laravel/ui", "laravel new", "npm install", and "npm run dev" sequentially.
+3. Then clone this repository "git pull https://github.com/DeveloperChink/fin_book_08.git"
