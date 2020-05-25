@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/account', function () {
     return view('interfaces.account');
 });
+
+Route::get('/account/category', function () {
+    return view('interfaces.category');
+});
