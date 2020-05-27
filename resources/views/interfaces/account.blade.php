@@ -41,7 +41,7 @@
 
                 <!-- Ledger Menu Item -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/account/ledger">
                     <i class="fas fa-fw fa-balance-scale"></i>
                     <span>Ledger</span></a>
                 </li>
@@ -322,53 +322,53 @@
                                             </thead>
                                             
                                             <tbody>
-                                                <tr class="table-success">
+                                                <tr>
                                                     <td>March 23, 2020</td>
                                                     <td>My Salary from work</td>
                                                     <td>Work Salary</td>
-                                                    <td><span>₱</span>5,000</td>
+                                                    <td class="text-success"><span>₱</span>5,000</td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Breakfast</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>500)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>500)</span></td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Lunch</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>250)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>250)</span></td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Dinner</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>1,000)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>1,000)</span></td>
                                                 </tr>
-                                                <tr class="table-success">
+                                                <tr>
                                                     <td>March 23, 2020</td>
                                                     <td>My Salary from work</td>
                                                     <td>Work Salary</td>
-                                                    <td><span>₱</span>5,000</td>
+                                                    <td class="text-success"><span>₱</span>5,000</td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Breakfast</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>500)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>500)</span></td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Lunch</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>250)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>250)</span></td>
                                                 </tr>
-                                                <tr class="table-danger">
+                                                <tr>
                                                     <td>March 24, 2020</td>
                                                     <td>Dinner</td>
                                                     <td>Food</td>
-                                                    <td><span>(<span>₱</span>1,000)</span></td>
+                                                    <td class="text-danger"><span>(<span>₱</span>1,000)</span></td>
                                                 </tr>
 
                                             </tbody>
