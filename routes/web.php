@@ -28,3 +28,7 @@ Route::get('/account', function () {
 Route::get('/account/category', function () {
     return view('interfaces.category');
 });
+
+Route::get('/account/ledger', function () {
+    return view('interfaces.ledger');
+});
