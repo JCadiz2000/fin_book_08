@@ -18,7 +18,7 @@
   --red: #dc3545;
   --orange: #f4623a;
   --yellow: #ffc107;
-  --green: #28a745;
+  --green: rgb(40, 167, 69);
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
@@ -159,12 +159,12 @@ sup {
 }
 
 a {
-  color: #f4623a;
+  color: #28a745;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #d6370c;
+  color: #28a745;
   text-decoration: underline;
 }
 
@@ -10148,7 +10148,7 @@ header.masthead h1 {
   text-align: center;
   opacity: 0;
   color: #fff;
-  background: rgba(244, 98, 58, 0.9);
+  background: rgb(40, 167, 69, 0.8);
   transition: opacity 0.25s ease;
   text-align: center;
 }
