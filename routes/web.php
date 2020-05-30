@@ -32,3 +32,6 @@ Route::get('/account/category', function () {
 Route::get('/account/ledger', function () {
     return view('interfaces.ledger');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
