@@ -20,9 +20,64 @@
     <!-- Styles -->
 </head>
 <body id="page-top">
- 
+ <!-- Page Wrapper -->
+<div id="wrapper">
 <!-- Content -->
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+    <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-dollar-sign"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">FinBook</div>
+</a>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+<li class="{{Request::is('account')? 'nav-item active':'nav-item'}}">
+    <a class="nav-link" href="/account">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Dashboard</span></a>
+</li>
+<!-- Divider -->
+<hr class="sidebar-divider">
+<!-- Heading -->
+<div class="sidebar-heading">
+    Menu
+</div>
+<!-- Category Menu Item -->
+<!-- Nav Item - Dashboard -->
+<li class="{{Request::is('account/category')? 'nav-item active':'nav-item'}}">
+    <a class="nav-link" href="/account/category">
+    <i class="fas fa-fw fa-list"></i>
+    <span>Category Management</span></a>
+</li>
+<!-- Ledger Menu Item -->
+<li class="{{Request::is('account/ledger')? 'nav-item active':'nav-item'}}">
+    <a class="nav-link" href="/account/ledger">
+    <i class="fas fa-fw fa-balance-scale"></i>
+    <span>Ledger</span></a>
+</li>
+<!-- Monthly Menu Item -->
+<li class="{{Request::is('account/monthly')? 'nav-item active':'nav-item'}}">
+    <a class="nav-link" href="/account/monthly">
+    <i class="far fa-fw fa-calendar"></i>
+    <span>Monthly Report</span></a>
+</li>
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
+</ul>
+<!-- End of Sidebar -->
 @yield('content')
+
+</div>
+ <!-- End of Page Wrapper -->
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -97,7 +152,8 @@
    });
    $('.datepicker').datepicker();
 </script>
-  
+<!-- Monthly Script -->
+<script src="{{ URL::asset('js/demo/month-chart.js') }}"></script>
   
 </body>
 </html>

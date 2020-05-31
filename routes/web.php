@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/account/category', 'CategoryController@index');
 Route::get('/account/ledger', 'LedgerController@index');
+Route::get('/account/monthly','MonthlyController@index');
 
 Route::post('/account/category', 'CategoryController@store');
 Route::post('/account/ledger', 'LedgerController@store');
