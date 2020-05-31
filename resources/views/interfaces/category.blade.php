@@ -1,7 +1,71 @@
+<<<<<<< HEAD
 @extends('layouts.layout')
 
 
 @section('content')
+=======
+@extends('layouts.accountlayout')
+@section('content')
+<!-- Start -->
+<!-- Page Wrapper -->
+<div id="wrapper">
+   <!-- Sidebar -->
+   <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+         <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-dollar-sign"></i>
+         </div>
+         <div class="sidebar-brand-text mx-3">FinBook</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+         <a class="nav-link" href="/account">
+         <i class="fas fa-fw fa-tachometer-alt"></i>
+         <span>Dashboard</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading">
+         Menu
+      </div>
+      <!-- Category Menu Item -->
+      <li class="nav-item active">
+         <a class="nav-link" href="/account/category">
+         <i class="fas fa-fw fa-list"></i>
+         <span>Category Management</span></a>
+      </li>
+      <!-- Ledger Menu Item -->
+      <li class="nav-item">
+         <a class="nav-link" href="/account/ledger">
+         <i class="fas fa-fw fa-balance-scale"></i>
+         <span>Ledger</span></a>
+      </li>
+      <!-- Monthly Menu Item -->
+      <li class="nav-item">
+         <a class="nav-link" href="#">
+         <i class="far fa-fw fa-calendar"></i>
+         <span>Monthly Report</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+         <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+   </ul>
+   <!-- End of Sidebar -->
+   <!-- Content Wrapper -->
+   <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+         <!-- Topbar -->
+         @include('interfaces.topbar')
+         <!-- End of Topbar -->
+>>>>>>> 049a2ff61bcddf081d042fe5f65a204aacf6262d
          <!-- Begin Page Content -->
          <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">Category Management</h1>
@@ -26,16 +90,13 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach($categories as $category)
                            <tr>
-                              <td>Food</td>
-                              <td>Expense</td>
+                              <td>{{$category->description}}</td>
+                              <td>{{$category->type}}</td>
                               <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit"><i class="far fa-edit"></i> Edit</button> <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Delete</button></td>
                            </tr>
-                           <tr>
-                              <td>Work Salary</td>
-                              <td>Income</td>
-                              <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit"><i class="far fa-edit"></i> Edit</button> <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Delete</button></td>
-                           </tr>
+                           @endforeach
                         </tbody>
                      </table>
                   </div>
@@ -43,4 +104,94 @@
             </div>
          </div>
          <!-- /.container-fluid -->
+<<<<<<< HEAD
 @endsection
+=======
+      </div>
+      <!-- End of Main Content -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+         <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+               <span>Copyright &copy; WebDev2 2020</span>
+            </div>
+         </div>
+      </footer>
+      <!-- End of Footer -->
+   </div>
+   <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<!-- Create Modal -->
+<div class="modal fade" id="Create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form action="/account/category" method="POST">
+               @csrf
+               <div class="form-group">
+                  <label for="desc">Description:  </label>
+                  <input type="text" name="description" id="desc" class="form-control" required>
+               </div>
+               <div class="form-group">
+                  <label for="type">Type:</label>
+                  <select name="type" id="type" class="form-control" required>
+                     <option selected disabled>Select Type</option>
+                     <option value="Expense">Expense</option>
+                     <option value="Income">Income</option>
+                  </select>
+               </div>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <input type="submit" class="btn btn-success" value="Create">
+         </div>
+      </div>
+      </form>
+   </div>
+</div>
+<!-- Edit Modal -->
+<div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form action="">
+               <div class="form-group">
+                  <label for="desc">Desctiption:  </label>
+                  <input type="text" name="" id="desc" class="form-control">
+               </div>
+               <div class="form-group">
+                  <label for="type">Type:</label>
+                  <select name="" id="type" class="form-control">
+                     <option selected disabled>Select Type</option>
+                     <option value="Expense">Expense</option>
+                     <option value="Income">Income</option>
+                  </select>
+               </div>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <input type="submit" name="" id="" class="btn btn-primary" value="Edit">
+         </div>
+      </div>
+      </form>
+   </div>
+</div>
+<!-- End -->
+
+@endsection
+
+
+>>>>>>> 049a2ff61bcddf081d042fe5f65a204aacf6262d

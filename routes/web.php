@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -32,6 +33,13 @@ Route::get('/index/category', function () {
 Route::get('/index/ledger', function () {
     return view('interfaces.ledger');
 });
-Auth::routes();
+=======
+Route::get('/account/category', 'CategoryController@index');
+Route::get('/account/ledger', 'LedgerController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/account/category', 'CategoryController@store');
+Route::post('/account/ledger', 'LedgerController@store');
+>>>>>>> 049a2ff61bcddf081d042fe5f65a204aacf6262d
+Auth::routes();
+Route::get('/account', 'AccountController@index')->name('account');
+
