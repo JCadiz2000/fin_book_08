@@ -133,10 +133,20 @@
                                <tbody>
                                   @foreach($data['ledger'] as $ledger)
                                   <tr>
-                                     <td>{{$ledger->date}}</td>
-                                     <td>{{$ledger->description}}</td>
-                                     <td>{{$ledger->category}}</td>
-                                     <td><span>₱</span>{{$ledger->amount}}</td>
+                                    <td>{{$ledger->date}}</td>
+                                    <td>{{$ledger->description}}</td>
+                                    <td>{{$ledger->category}}</td>
+                                    @foreach($data['category'] as $category)
+                                      @if($category->description == $ledger->category)
+                                          @if($category->type == 'Income')
+                                          <td class="text-success">₱{{$ledger->amount}}</td>
+                                          @break
+                                          @else
+                                          <td class="text-danger">(₱{{$ledger->amount}})</td>
+                                          @break
+                                          @endif
+                                      @endif                               
+                                    @endforeach
                                   </tr>
                                   @endforeach
                                </tbody>

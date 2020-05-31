@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ledger;
 use App\Category;
 use Auth;
 class CategoryController extends Controller
@@ -41,6 +42,30 @@ class CategoryController extends Controller
         $category->type = request('type');
         $category->userid = $userid;
         $category->save();
+
+        return redirect('/account/category');
+    }
+
+    public function update($id)
+    {
+        $userid = Auth::user()->id;
+        $category = Category::findOrFail($id);
+        $ledger = Ledger::where('userid',$userid)->where('category',$category->description)->get();
+        foreach ($ledger as $row) {
+            $row->category = request('description');
+            $row->save();
+        }
+        $category->description = request('description');
+        $category->type = request('type');
+        $category->save();
+
+        return redirect('/account/category');
+    }
+
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
 
         return redirect('/account/category');
     }
