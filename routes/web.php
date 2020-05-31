@@ -17,21 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/account/category', 'CategoryController@index');
+Route::get('/account/ledger', 'LedgerController@index');
+
+Route::post('/account/category', 'CategoryController@store');
+Route::post('/account/ledger', 'LedgerController@store');
 Auth::routes();
+Route::get('/account', 'AccountController@index')->name('account');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/account', function () {
-    return view('interfaces.account');
-});
-
-Route::get('/account/category', function () {
-    return view('interfaces.category');
-});
-
-Route::get('/account/ledger', function () {
-    return view('interfaces.ledger');
-});
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

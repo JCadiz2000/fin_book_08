@@ -1,4 +1,5 @@
-@include('base.header')
+@extends('layouts.accountlayout')
+@section('content')
 <!-- Start -->
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -82,16 +83,13 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach($categories as $category)
                            <tr>
-                              <td>Food</td>
-                              <td>Expense</td>
+                              <td>{{$category->description}}</td>
+                              <td>{{$category->type}}</td>
                               <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit"><i class="far fa-edit"></i> Edit</button> <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Delete</button></td>
                            </tr>
-                           <tr>
-                              <td>Work Salary</td>
-                              <td>Income</td>
-                              <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit"><i class="far fa-edit"></i> Edit</button> <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Delete</button></td>
-                           </tr>
+                           @endforeach
                         </tbody>
                      </table>
                   </div>
@@ -114,28 +112,6 @@
    <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-         </div>
-         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-         <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-         </div>
-      </div>
-   </div>
-</div>
 <!-- Create Modal -->
 <div class="modal fade" id="Create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -147,14 +123,15 @@
             </button>
          </div>
          <div class="modal-body">
-            <form action="">
+            <form action="/account/category" method="POST">
+               @csrf
                <div class="form-group">
-                  <label for="desc">Desctiption:  </label>
-                  <input type="text" name="" id="desc" class="form-control">
+                  <label for="desc">Description:  </label>
+                  <input type="text" name="description" id="desc" class="form-control" required>
                </div>
                <div class="form-group">
                   <label for="type">Type:</label>
-                  <select name="" id="type" class="form-control">
+                  <select name="type" id="type" class="form-control" required>
                      <option selected disabled>Select Type</option>
                      <option value="Expense">Expense</option>
                      <option value="Income">Income</option>
@@ -163,7 +140,7 @@
          </div>
          <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <input type="submit" name="" id="" class="btn btn-success" value="Create">
+         <input type="submit" class="btn btn-success" value="Create">
          </div>
       </div>
       </form>
@@ -203,25 +180,7 @@
    </div>
 </div>
 <!-- End -->
-@include('base.footer')
-<script>
-   $(document).ready(function() {
-       $('#categoryTable').DataTable({
-           ordering: false,
-           lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-           searching: false
-       });    
-   });
-   $('#editBtn').click(function(){
-       $('#closeBtn').show();
-       $('#editBtn').hide();
-       $('.optionRow').show();
-   });
-   $('#closeBtn').click(function(){
-       $('#closeBtn').hide();
-       $('#editBtn').show();
-       $('.optionRow').hide();
-   });
-</script>
-</body>
-</html>
+
+@endsection
+
+

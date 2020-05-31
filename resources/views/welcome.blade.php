@@ -123,8 +123,8 @@
                                 <a class="portfolio-box" href="#"
                                     ><img class="img-fluid" src="assets/images/Report.png" alt="" />
                                     <div class="portfolio-box-caption">
-                                        <div class="project-category text-white-50">Category</div>
-                                        <div class="project-name">Project Name</div>
+                                        <div class="project-category text-white-50">Reports</div>
+                                        <div class="project-name">Generate your monthly reports.</div>
                                     </div></a
                                 >
                             </div>
@@ -132,8 +132,8 @@
                                 <a class="portfolio-box" href="#"
                                     ><img class="img-fluid" src="assets/images/Category.png" alt="" />
                                     <div class="portfolio-box-caption">
-                                        <div class="project-category text-white-50">Category</div>
-                                        <div class="project-name">Project Name</div>
+                                        <div class="project-category text-white-50">Categories</div>
+                                        <div class="project-name"></div>
                                     </div></a
                                 >
                             </div>
@@ -141,8 +141,8 @@
                                 <a class="portfolio-box" href="#"
                                     ><img class="img-fluid" src="assets/images/Ledger.jpg" alt="" />
                                     <div class="portfolio-box-caption p-3">
-                                        <div class="project-category text-white-50">Category</div>
-                                        <div class="project-name">Project Name</div>
+                                        <div class="project-category text-white-50">Sources</div>
+                                        <div class="project-name">Keep track of your spendings.</div>
                                     </div></a
                                 >
                             </div>
@@ -156,24 +156,25 @@
                             <div class="col-lg-8 text-center">
                                 <h2 class="mt-0">Let's Get In Touch!</h2>
                                 <hr class="divider green my-4" />
-                                <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                                <p class="text-muted mb-5">Got any questions about our application? Call or Email us</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                                 <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                                <div>+1 (555) 123-4567</div>
+                                <div>0932 415 2157</div>
+                                
                             </div>
                             <div class="col-lg-4 mr-auto text-center">
                                 <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                                ><!-- Make sure to change the email address in BOTH the anchor text and the link target below!--><a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+                                ><a class="d-block" href="mailto:contact@yourwebsite.com">cadizjayson25@yahoo.com</a>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- Footer-->
                 <footer class="bg-light py-5">
-                    <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
+                    <div class="container"><div class="small text-center text-muted">Copyright © WebDev 2 2020</div></div>
                 </footer>  
             </div>
         </div>
