@@ -38,7 +38,7 @@
                            <tr>
                               <td>{{$category->description}}</td>
                               <td>{{$category->type}}</td>
-                              <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit"><i class="far fa-edit"></i> Edit</button> <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Delete</button></td>
+                              <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-{{$category->id}}"><i class="far fa-edit"></i> Edit</button> </td>
                            </tr>
                            @endforeach
                         </tbody>
@@ -95,8 +95,11 @@
       </form>
    </div>
 </div>
+
+
 <!-- Edit Modal -->
-<div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach($categories as $category)
+<div class="modal fade" id="edit-{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
@@ -106,28 +109,45 @@
             </button>
          </div>
          <div class="modal-body">
-            <form action="">
                <div class="form-group">
+                  <form action="/account/category/{{$category->id}}" method="POST">
+                     @csrf
+                     @method('PUT')
                   <label for="desc">Desctiption:  </label>
-                  <input type="text" name="" id="desc" class="form-control">
+                  <input type="text" name="description" id="desc" class="form-control" value="{{$category->description}}" required>
                </div>
                <div class="form-group">
                   <label for="type">Type:</label>
-                  <select name="" id="type" class="form-control">
-                     <option selected disabled>Select Type</option>
-                     <option value="Expense">Expense</option>
+                  <select name="type" id="type" class="form-control" value="{{$category->type}}" required>
+                     @if($category->type == 'Expense')
+                     <option disabled>Select Type</option>
+                     <option selected value="Expense">Expense</option>
                      <option value="Income">Income</option>
+                     @else
+                     <option disabled>Select Type</option>
+                     <option value="Expense">Expense</option>
+                     <option selected value="Income">Income</option>
+                     @endif    
                   </select>
                </div>
          </div>
          <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
          <input type="submit" name="" id="" class="btn btn-primary" value="Edit">
+         </form>
+         <form action="/account/category/{{$category->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger"> Delete</button>
+         </form>
+         
          </div>
       </div>
       </form>
    </div>
 </div>
+@endforeach
+
 <!-- End -->
 
 @endsection

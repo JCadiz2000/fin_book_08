@@ -51,4 +51,12 @@ class LedgerController extends Controller
 
         return redirect('/account/ledger');
     }
+
+    public function destroy($id)
+    {
+        $ledger = Ledger::findOrFail($id);
+        $ledger->delete();
+
+        return redirect('/account/ledger');
+    }
 }

@@ -18,6 +18,8 @@
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">My Ledgers</h6>
                   <div>
+                     <button id="editBtn" type="button" class="btn btn-secondary" ><i class="far fa-edit"></i> Edit</button>
+                     <button id="closeBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-times"></i> Cancel</button>
                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Create"><i class="fas fa-plus"></i> Add</button>
                   </div>
                </div>
@@ -30,6 +32,7 @@
                               <th>Description</th>
                               <th>Category</th>
                               <th>Amount</th>
+                              <th class="optionRow" style="display: none;"></th>
                            </tr>
                         </thead>
                         <tbody>
@@ -38,7 +41,18 @@
                               <td>{{$ledger->date}}</td>
                               <td>{{$ledger->description}}</td>
                               <td>{{$ledger->category}}</td>
-                              <td><span>₱</span>{{$ledger->amount}}</td>
+                              @foreach($data['categories'] as $category)
+                                @if($category->description == $ledger->category)
+                                    @if($category->type == 'Income')
+                                    <td class="text-success">₱{{$ledger->amount}}</td>
+                                    @break
+                                    @else
+                                    <td class="text-danger">(₱{{$ledger->amount}})</td>
+                                    @break
+                                    @endif
+                                @endif                               
+                              @endforeach
+                              <td class="optionRow" style="display:none;"> <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-{{$ledger->id}}"><i class="fas fa-times"></i> Delete</button> </td>                             
                            </tr>
                            @endforeach
                         </tbody>
@@ -79,15 +93,15 @@
                @csrf
                <div class="form-group">
                   <label for="date">Date:  </label>
-                  <input type="date" name="date" id="date" class="form-control">
+                  <input type="date" name="date" id="date" class="form-control" required>
                </div>
                <div class="form-group">
                   <label for="desc">Descrption:  </label>
-                  <input type="text" name="description" id="desc" class="form-control">
+                  <input type="text" name="description" id="desc" class="form-control" required>
                </div>
                <div class="form-group">
                   <label for="cate">Category:</label>
-                  <select name="category" id="category" class="form-control">
+                  <select name="category" id="category" class="form-control" required>
                      <option selected disabled>Select Category</option>
                      @foreach($data['categories'] as $category)
                      <option value="{{$category->description}}">{{$category->description}}</option>
@@ -96,7 +110,7 @@
                </div>
                <div class="form-group">
                   <label for="amt">Amount:  </label>
-                  <input type="number" name="amount" id="amt" class="form-control" min="1">
+                  <input type="number" name="amount" id="amt" class="form-control" min="1" required>
                </div>
          </div>
          <div class="modal-footer">
@@ -107,5 +121,31 @@
       </form>
    </div>
 </div>
-
+<!-- Confirm Modal -->
+@foreach($data['ledgers'] as $ledger)
+<div class="modal fade" id="confirm-{{$ledger->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <p>Are you sure you want to delete this ledger from {{$ledger->date}}?</p>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <form action="/account/ledger/{{$ledger->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger"> Delete</button>
+         </form>
+         </div>
+      </div>
+      </form>
+   </div>
+</div>
+@endforeach
 @endsection
