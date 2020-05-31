@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.layout')
-
-
-@section('content')
-=======
 @extends('layouts.accountlayout')
 @section('content')
 <!-- Start -->
@@ -65,7 +59,6 @@
          <!-- Topbar -->
          @include('interfaces.topbar')
          <!-- End of Topbar -->
->>>>>>> 049a2ff61bcddf081d042fe5f65a204aacf6262d
          <!-- Begin Page Content -->
          <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">Category Management</h1>
