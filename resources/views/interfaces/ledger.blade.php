@@ -1,56 +1,8 @@
-@include ('base.header')
+@extends('layouts.layout')
+
+@section('content')
 <!-- Start -->
 <!-- Page Wrapper -->
-<div id="wrapper">
-	<!-- Sidebar -->
-	<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-		<!-- Sidebar - Brand -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/account">
-			<div class="sidebar-brand-icon rotate-n-15">
-				<i class="fas fa-dollar-sign"></i>
-			</div>
-			<div class="sidebar-brand-text mx-3">FinBook</div>
-		</a>
-		<!-- Divider -->
-		<hr class="sidebar-divider my-0">
-		<!-- Nav Item - Dashboard -->
-		<li class="nav-item ">
-			<a class="nav-link" href="/account">
-			<i class="fas fa-fw fa-tachometer-alt"></i>
-			<span>Dashboard</span></a>
-		</li>
-		<!-- Divider -->
-		<hr class="sidebar-divider">
-		<!-- Heading -->
-		<div class="sidebar-heading">
-			Menu
-		</div>
-		<!-- Category Menu Item -->
-		<li class="nav-item ">
-			<a class="nav-link" href="/account/category">
-			<i class="fas fa-fw fa-list"></i>
-			<span>Category Management</span></a>
-		</li>
-		<!-- Ledger Menu Item -->
-		<li class="nav-item active">
-			<a class="nav-link" href="/account/ledger">
-			<i class="fas fa-fw fa-balance-scale"></i>
-			<span>Ledger</span></a>
-		</li>
-		<!-- Monthly Menu Item -->
-		<li class="nav-item">
-			<a class="nav-link" href="#">
-			<i class="far fa-fw fa-calendar"></i>
-			<span>Monthly Report</span></a>
-		</li>
-		<!-- Divider -->
-		<hr class="sidebar-divider d-none d-md-block">
-		<!-- Sidebar Toggler (Sidebar) -->
-		<div class="text-center d-none d-md-inline">
-			<button class="rounded-circle border-0" id="sidebarToggle"></button>
-		</div>
-	</ul>
-	<!-- End of Sidebar -->
 	<!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 		<!-- Main Content -->
@@ -251,70 +203,4 @@
 		<!-- End of Footer -->
 	</div>
 	<!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
-<!-- End -->
-<!-- Create Modal -->
-<div class="modal fade" id="Create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Ledger</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <form action="">
-               <div class="form-group">
-                  <label for="date">Date:  </label>
-                  <input type="text" name="" id="date" class="form-control datepicker">
-               </div>
-               <div class="form-group">
-                  <label for="desc">Descrption:  </label>
-                  <input type="text" name="" id="desc" class="form-control datepicker">
-               </div>
-               <div class="form-group">
-                  <label for="cate">Category:</label>
-                  <select name="" id="cate" class="form-control">
-                     <option selected disabled>Select Category</option>
-                     <option value="Expense">Food</option>
-                     <option value="Income">Work Salary</option>
-                     <option value="Expense">Transportaion</option>
-                     <option value="Income">Gift</option>
-                     <option value="Income">Mobile Load</option>
-                     <option value="Income">Water Bill</option>
-                     <option value="Income">Electricity Bill</option>
-                  </select>
-               </div>
-               <div class="form-group">
-                  <label for="amt">Ammount:  </label>
-                  <input type="number" name="" id="amt" class="form-control" min="1">
-               </div>
-               
-         </div>
-         <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <input type="submit" name="" id="" class="btn btn-success" value="Create">
-         </div>
-      </div>
-      </form>
-   </div>
-</div>
-@include ('base.footer')
-<script>
-    $(document).ready(function() {
-       $('#ledgerTable').DataTable({
-           ordering: false,
-           lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-           searching: false
-       });    
-   });
-   $('.datepicker').datepicker();
-</script>
-</body>
-</html>
+@endsection

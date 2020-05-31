@@ -38,7 +38,7 @@
                             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                                 @if (Route::has('login'))
                                     @auth
-                                        <li class="nav-item"><a class="nav-link" href="{{ url('/account') }}">My Account</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ url('/account') }}"> {{ Auth::user()->firstname }}</a></li>
                                     @else
                                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                                         @if (Route::has('register'))

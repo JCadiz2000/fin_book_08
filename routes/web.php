@@ -21,15 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/account', function () {
-    return view('interfaces.account');
+Route::get('/index', function () {
+    return view('interfaces.index');
 });
 
-Route::get('/account/category', function () {
+Route::get('/index/category', function () {
     return view('interfaces.category');
 });
 
-Route::get('/account/ledger', function () {
+Route::get('/index/ledger', function () {
     return view('interfaces.ledger');
 });
 Auth::routes();
