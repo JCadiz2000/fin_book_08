@@ -23,6 +23,11 @@ Route::get('/account/monthly','MonthlyController@index');
 
 Route::post('/account/category', 'CategoryController@store');
 Route::post('/account/ledger', 'LedgerController@store');
+
+Route::put('/account/category/{id}', 'CategoryController@update');
+
 Auth::routes();
 Route::get('/account', 'AccountController@index')->name('account');
 
+Route::delete('/account/category/{id}', 'CategoryController@destroy');
+Route::delete('/account/ledger/{id}', 'LedgerController@destroy');
