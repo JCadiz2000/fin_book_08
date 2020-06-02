@@ -48,9 +48,6 @@
             </div>
          </div>
          <!-- /.container-fluid -->
-<<<<<<< HEAD
-@endsection
-=======
       </div>
       <!-- End of Main Content -->
       <!-- Footer -->
@@ -156,4 +153,3 @@
 @endsection
 
 
->>>>>>> 049a2ff61bcddf081d042fe5f65a204aacf6262d
