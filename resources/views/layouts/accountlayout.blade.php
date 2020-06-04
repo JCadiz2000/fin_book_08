@@ -153,7 +153,7 @@
    $('.datepicker').datepicker();
 </script>
 <!-- Monthly Script -->
-<script src="{{ URL::asset('js/demo/month-chart.js') }}"></script>
+@yield('script')
   
 </body>
 </html>
