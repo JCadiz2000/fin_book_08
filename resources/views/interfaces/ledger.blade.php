@@ -149,3 +149,16 @@
 </div>
 @endforeach
 @endsection
+
+@section('scriptLedger')
+<script>
+   $(document).ready(function() {
+      $('#ledgerTable').DataTable({
+          ordering: false,
+          lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
+          searching: false
+      });    
+   });
+   $('.datepicker').datepicker();
+</script>
+@endsection

@@ -32,6 +32,24 @@ class AccountController extends Controller
 
         $data['category'] = $categories;
         $data['ledger'] = $ledgers;
+        
+        $income = 0;
+        $savings = 0;
+        $expense = 0;
+        foreach ($ledgers as $ledger) {
+            foreach ($categories as $category) {
+                if($ledger->category == $category->description && $category->type == "Expense"){
+                    $expense += $ledger->amount;
+                }else if($ledger->category == $category->description && $category->type == "Income"){
+                    $income += $ledger->amount;
+                }
+            }
+        }
+        $income/=12;
+        $expense/=12;
+        $data['income'] = $income;
+        $data['expense'] = $expense;
+        $data['savings'] = $income-$expense;
         return view('interfaces.account',[
             'data' => $data,
         ]);

@@ -133,7 +133,7 @@
                                     ><img class="img-fluid" src="assets/images/Category.png" alt="" />
                                     <div class="portfolio-box-caption">
                                         <div class="project-category text-white-50">Categories</div>
-                                        <div class="project-name"></div>
+                                        <div class="project-name">Manage your sources</div>
                                     </div></a
                                 >
                             </div>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-lg-4 mr-auto text-center">
                                 <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                                ><a class="d-block" href="mailto:contact@yourwebsite.com">cadizjayson25@yahoo.com</a>
+                                ><a class="d-block" href="#">cadizjayson25@yahoo.com</a>
                             </div>
                         </div>
                     </div>
