@@ -147,9 +147,27 @@
    </div>
 </div>
 @endforeach
-
 <!-- End -->
-
 @endsection
 
-
+@section('scriptCategory')
+<script>
+   $(document).ready(function() {
+       $('#categoryTable').DataTable({
+           ordering: false,
+           lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
+           searching: false
+       });    
+   });
+   $('#editBtn').click(function(){
+       $('#closeBtn').show();
+       $('#editBtn').hide();
+       $('.optionRow').show();
+   });
+   $('#closeBtn').click(function(){
+       $('#closeBtn').hide();
+       $('#editBtn').show();
+       $('.optionRow').hide();
+   });
+</script>
+@endsection
