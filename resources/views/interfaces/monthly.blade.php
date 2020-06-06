@@ -48,6 +48,9 @@
                     <div class="alert alert-danger" role="alert" id="warning" style="display:none;">
                         Please select a date first to generate a report!
                     </div>
+                    <div class="alert alert-info" role="alert" id="notif" style="display:none;">
+                        No record can be found for this date!
+                    </div>
                 </div>
                 <div class="col"></div>
             </div>
@@ -110,37 +113,32 @@
 
 @endsection
 
-@section('script')
+@section('scriptMonthly')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
 <script>
-var ctxMonth = document.getElementById("monthChart");
 
+var ctxMonth = document.getElementById("monthChart");
 var barChart = new Chart(ctxMonth,{
     type:'bar',
     data: {
-        labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
         datasets: [{
-          label: "Savings",
+          label: "Income",
           backgroundColor: "rgba(28, 200, 138, 0.5)",
           hoverBackgroundColor: "rgba(28, 200, 138, 1)",
           borderColor: "rgba(28, 200, 138, 1)",
 
-          data: [20000,40000,20000,40000,20000,40000,20000,40000,20000,40000,20000,40000],
         },{
           label: "Expenses",
-          lineTension: 0.3,
           backgroundColor: "rgba(231, 74, 59, 0.5)",
           hoverBackgroundColor: "rgba(231, 74, 59, 1)",
           borderColor: "rgba(231, 74, 59, 1)",
 
-          data: [10000,5000,10000,5000,10000,5000,10000,5000,10000,5000,10000,5000],
         }],
         
     },
     options: {
         title:{
             display:true,
-            text:'January Report',
             fontSize: 25,
         },
         maintainAspectRatio: false,
@@ -167,6 +165,7 @@ var barChart = new Chart(ctxMonth,{
             }],
             yAxes: [{
             ticks: {
+                beginAtZero:true,
                 maxTicksLimit: 5,
                 padding: 10,
                 // Include a dollar sign in the ticks
@@ -209,7 +208,33 @@ var barChart = new Chart(ctxMonth,{
         }
     }
 });
-
+function genBar(selectedDate,dateNum,months) {
+    var days=[];
+    var expenseData = [];
+    var incomeData = [];
+    var monthDays = new Date(2020,dateNum+1,0).getDate();
+    for(i=1 ;i<=monthDays;i++){
+        expenseData.push(0);
+        incomeData.push(0);
+        days.push(i);
+    }
+    @foreach($data['ledger'] as $ledger) 
+        if(months[new Date("{{$ledger->date}}").getMonth()] == selectedDate){ 
+        @foreach($data['category'] as $category)      
+            if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Expense"){
+                expenseData[new Date("{{$ledger->date}}").getDate()-1] += {{$ledger->amount}}; 
+            }else if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Income"){
+                incomeData[new Date("{{$ledger->date}}").getDate()-1] += {{$ledger->amount}}; 
+            }
+        @endforeach    
+        }    
+    @endforeach
+    barChart.data.datasets[0].data = incomeData;
+    barChart.data.datasets[1].data = expenseData;
+    barChart.data.labels = days;
+    barChart.options.title.text = selectedDate+" Report";
+    barChart.update();
+};
 </script>
 <script>
 
@@ -352,25 +377,24 @@ function updateChart(){
         $("#warning").show();
         $("#notice").hide();
     }else{
-        $(".charts").show();
         $("#warning").hide();
         $("#notice").hide();
 
-        
-        
-        @foreach($data['ledger'] as $ledger)
-        
+        @foreach($data['ledger'] as $ledger)      
             if(months[new Date("{{$ledger->date}}").getMonth()]==$("#date").val()&& set!=1){
                 set++
-
-        barChart.update();
+                $(".charts").show();
+                $("#notif").hide();
                 genPie($("#date").val(),months);
+                genBar($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
             }
         @endforeach
+            else if(set==0){
+                $("#notif").show();
+                $(".charts").hide();
+            }
     }
     
 };
-
-
 </script>
 @endsection

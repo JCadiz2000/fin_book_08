@@ -105,55 +105,13 @@
   <script src="{{ URL::asset('js/demo/chart-pie-demo.js') }}"></script>
   <script src="{{ URL::asset('js/demo/datatables-demo.js') }}"></script>
   <!-- Dasboard script -->
-  <script>
-    $(document).ready(function() {
-        $('#categoryList').DataTable({
-            ordering: false,
-            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-            searching: false
-        });    
-    });
-    $(document).ready(function() {
-        $('#ledgerList').DataTable({
-            ordering: false,
-            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-            searching: false
-        });    
-    });
-  </script>
+@yield('scriptDashboard')
   <!-- Category script -->
-  <script>
-   $(document).ready(function() {
-       $('#categoryTable').DataTable({
-           ordering: false,
-           lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-           searching: false
-       });    
-   });
-   $('#editBtn').click(function(){
-       $('#closeBtn').show();
-       $('#editBtn').hide();
-       $('.optionRow').show();
-   });
-   $('#closeBtn').click(function(){
-       $('#closeBtn').hide();
-       $('#editBtn').show();
-       $('.optionRow').hide();
-   });
-</script>
+@yield('scriptCategory')
 <!-- Ledger script -->
-<script>
-   $(document).ready(function() {
-      $('#ledgerTable').DataTable({
-          ordering: false,
-          lengthMenu:[[5,10,25,50,-1],[5,10,25,50,'All']],
-          searching: false
-      });    
-   });
-   $('.datepicker').datepicker();
-</script>
+@yield('scriptLedger')
 <!-- Monthly Script -->
-@yield('script')
+@yield('scriptMonthly')
   
 </body>
 </html>
