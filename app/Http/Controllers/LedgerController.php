@@ -27,7 +27,7 @@ class LedgerController extends Controller
     public function index()
     {
         $userid = Auth::user()->id;
-        $ledgers = Ledger::where('userid',$userid)->get();
+        $ledgers = Ledger::where('userid',$userid)->orderBy('date','DESC')->get();
         $categories = Category::where('userid',$userid)->get();
 
         $data['ledgers'] = $ledgers;

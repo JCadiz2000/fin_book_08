@@ -28,7 +28,7 @@ class AccountController extends Controller
     {
         $userid = Auth::user()->id;
         $categories = Category::where('userid',$userid)->get();
-        $ledgers = Ledger::where('userid',$userid)->get();
+        $ledgers = Ledger::where('userid',$userid)->orderBy('date','DESC')->get();
 
         $data['category'] = $categories;
         $data['ledger'] = $ledgers;
@@ -47,9 +47,9 @@ class AccountController extends Controller
         }
         $income/=12;
         $expense/=12;
-        $data['income'] = $income;
-        $data['expense'] = $expense;
-        $data['savings'] = $income-$expense;
+        $data['income'] = number_format($income,2);
+        $data['expense'] = number_format($expense,2);
+        $data['savings'] = number_format($income-$expense,2);
         return view('interfaces.account',[
             'data' => $data,
         ]);
