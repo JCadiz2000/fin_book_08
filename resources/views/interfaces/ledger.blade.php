@@ -159,6 +159,15 @@
           searching: false
       });    
    });
-   $('.datepicker').datepicker();
+   $('#editBtn').click(function(){
+       $('#closeBtn').show();
+       $('#editBtn').hide();
+       $('.optionRow').show();
+   });
+   $('#closeBtn').click(function(){
+       $('#closeBtn').hide();
+       $('#editBtn').show();
+       $('.optionRow').hide();
+   });
 </script>
 @endsection
