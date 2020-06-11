@@ -65,6 +65,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        $ledger = Ledger::where('category',$category->description);
+        $ledger->delete();
         $category->delete();
 
         return redirect('/account/category');
