@@ -125,7 +125,7 @@ var barChart = new Chart(ctxMonth,{
           label: "Income",
           backgroundColor: "rgba(28, 200, 138, 0.5)",
           hoverBackgroundColor: "rgba(28, 200, 138, 1)",
-          borderColor: "rgba(28, 200, 138, 1)",
+          borderColor: "rgba(231, 74, 59, 1)",
 
         },{
           label: "Expenses",
@@ -243,10 +243,20 @@ var ctxDaily = document.getElementById("dailyChart");
 var lineChart = new Chart(ctxDaily,{
     type: 'line',
     data: {
-        labels: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+        labels: ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm'],
         datasets: [{
-            backgroundColor: "rgba(196, 93, 105, 0.3)",
-            data: [20,10,30,50,40]
+            label: "Expenses",
+            lineTension: 0.3,
+            backgroundColor: "rgba(231, 74, 59, 0.5)",
+            borderColor: "rgba(231, 74, 59, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(231, 74, 59, 1)",
+            pointBorderColor: "rgba(231, 74, 59, 1)",
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: "rgba(231, 74, 59, 1)",
+            pointHoverBorderColor: "rgba(231, 74, 59, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
         }]
     },
     options:{
@@ -271,6 +281,7 @@ var lineChart = new Chart(ctxDaily,{
             }],
             yAxes: [{
             ticks: {
+                beginAtZero: true,
                 maxTicksLimit: 5,
                 padding: 10,
                 // Include a dollar sign in the ticks
@@ -304,9 +315,32 @@ var lineChart = new Chart(ctxDaily,{
             intersect: false,
             mode: 'index',
             caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
+                }
+            }
         }
     } 
 });
+function genLine(selectedDate,dateNum,months) {
+    let data =[];
+    for(i=0;i<24;i++){
+        data.push(0);
+    }
+    @foreach($data['ledger'] as $ledger) 
+        if(months[new Date("{{$ledger->date}}").getMonth()] == selectedDate){ 
+        @foreach($data['category'] as $category)      
+            if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Expense"){
+                data[new Date("{{$ledger->created_at}}").getHours()] += {{$ledger->amount}}; 
+            }
+        @endforeach    
+        }    
+    @endforeach
+    lineChart.data.datasets[0].data= data;
+    lineChart.update();
+};
 </script>
 <script>
 let labels=[];
@@ -327,6 +361,7 @@ var expenseChart = new Chart(ctxExpense,{
     type: 'pie',
   data: {
     datasets: [{
+      borderColor: "rgba(0,0,0,0.01)",
       backgroundColor: bgColor,
     }],
   },
@@ -387,6 +422,7 @@ function updateChart(){
                 $("#notif").hide();
                 genPie($("#date").val(),months);
                 genBar($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
+                genLine($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
             }
         @endforeach
             else if(set==0){
