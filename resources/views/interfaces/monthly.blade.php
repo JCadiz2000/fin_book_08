@@ -124,7 +124,7 @@ var barChart = new Chart(ctxMonth,{
         datasets: [{
           label: "Income",
           backgroundColor: "rgba(28, 200, 138, 0.5)",
-          hoverBackgroundColor: "rgba(231, 74, 59, 1)",
+          hoverBackgroundColor: "rgba(28, 200, 138, 1)",
           borderColor: "rgba(231, 74, 59, 1)",
 
         },{

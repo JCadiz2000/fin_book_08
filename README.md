@@ -8,4 +8,6 @@ For these files and the project to work please follow:
 4. Under ".env" file, make sure to set DB_CONNECTION=mysql, DB_DATABASE=financial, DB_USERNAME=root, DB_PASSWORD=root.
 5. In your terminal type "php artisan migrate:install" to create the datatables in the database .
 6. In your terminal type "php artisan serve" to run the server.
-7. In a separate terminal type "mysql -u root" to connect to the database.
+7. In a separate terminal type "mysql -u root -p" a prompt will appear to enter the password and input the correct password to connect to the database.
+
+NOTE: Make sure to set the password to "root" of your root@localhost in your XAMPP or you will receive an error "Access denied for user 'root'@'localhost' (using password: YES)" and any migrations command will not work.
