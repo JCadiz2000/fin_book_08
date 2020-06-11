@@ -1,8 +1,3 @@
-   DO NOT PULL THE REPO YET JS ISN'T WORKING
-
-
-
-
 Before Pulling this repo please make sure to have Laravel, Composer, and NodeJs in your system
 
 For these files and the project to work please follow:
