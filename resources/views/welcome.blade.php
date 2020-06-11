@@ -160,14 +160,15 @@
                             </div>
                         </div>
                         <div class="row">
+                        
                             <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                                 <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                                <div>0932 415 2157</div>
+                                <div>0932 415 2157 <br> 0995 769 6059</div>
                                 
                             </div>
                             <div class="col-lg-4 mr-auto text-center">
                                 <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                                ><a class="d-block" href="#">cadizjayson25@yahoo.com</a>
+                                ><a class="d-block" href="#">cadizjayson25@yahoo.com <br>uy.brantfrancis@gmail.com</a>
                             </div>
                         </div>
                     </div>
