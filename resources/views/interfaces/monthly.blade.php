@@ -15,12 +15,8 @@
             <h1 class="h3 mb-2 text-gray-800">Monthly Report</h1>
             <p class="mb-4">View your Monthly Expenses, Savings and Income here!</p>
             <div class="row">
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col align-self-end d-flex align-items-center">
-                    <label for="date">Date:</label>
+                <div class="col d-flex align-items-center">
+                <label for="date" class="mr-2">Date:</label>
                     <select name="" id="date" class="form-control">
                         <option selected disabled>Select Month</option>
                         <option value="January">January</option>
@@ -35,8 +31,16 @@
                         <option value="October">October</option>
                         <option value="November">November</option>
                         <option value="December">December</option>
-                    </select>
-                    <button type="button" class="btn btn-primary btn-sm" id="generate" onclick="updateChart()"><i class="far fa-calendar-plus"></i> Generate</button>
+                    </select>    
+                </div>
+                <div class="col">
+                <button type="button" class="btn btn-primary btn-sm" id="generate" onclick="updateChart()"><i class="far fa-calendar-plus"></i> Generate</button>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col align-self-end">
+                    
+                    
                 </div>
             </div>
             <div class="row">
@@ -207,6 +211,9 @@ var ChartIncome = new Chart(ctxMonthIncome, {
           return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
         }
       }
+    },
+    plugins:{
+        labels: false
     }
   }
 });
@@ -307,6 +314,9 @@ var ChartExpense = new Chart(ctxMonthExpense, {
           return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
         }
       }
+    },
+    plugins:{
+        labels: false
     }
   }
 });
