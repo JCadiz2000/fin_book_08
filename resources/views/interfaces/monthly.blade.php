@@ -545,7 +545,7 @@ function updateChart(){
                 genPie($("#date").val(),months);
                 genLine($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
                 $("#reportDate").empty();
-                $("#reportDate").append($("#date").val());
+                $("#reportDate").append($("#date").val()+" "+new Date("{{$ledger->date}}").getFullYear());
             }
         @endforeach
             else if(set==0){
@@ -561,7 +561,7 @@ $(document).ready(function() {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     genPie(months[new Date().getMonth()],months);
     genLine(months[new Date().getMonth()],new Date().getMonth(),months);
-    $("#reportDate").append(months[new Date().getMonth()]);
+    $("#reportDate").append(months[new Date().getMonth()]+" "+new Date().getFullYear());
 });  
 </script>
 @endsection
