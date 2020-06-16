@@ -18,7 +18,6 @@
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">My Categories</h6>
                   <div>
-                     <button id="editBtn" type="button" class="btn btn-secondary" ><i class="far fa-edit"></i> Edit</button>
                      <button id="closeBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-times"></i> Cancel</button>
                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Create"><i class="fas fa-plus"></i> Create</button>
                   </div>
@@ -38,7 +37,7 @@
                            <tr>
                               <td>{{$category->description}}</td>
                               <td>{{$category->type}}</td>
-                              <td class="optionRow" style="display:none;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-{{$category->id}}"><i class="far fa-edit"></i> Edit</button> </td>
+                              <td width="62.5px"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-{{$category->id}}"><i class="far fa-edit"></i> Edit</button> </td>
                            </tr>
                            @endforeach
                         </tbody>

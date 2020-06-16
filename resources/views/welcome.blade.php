@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-lg-8 align-self-baseline">
                                 <p class="text-white-75 font-weight-light mb-5">Financial Notebook gets your monthly income and records your daily, weekly and monthly expenses to help you manage your money wisely.</p>
-                                <a class="btn btn-success btn-xl js-scroll-trigger" href="#about">Start Now!</a>
+                                <a class="btn btn-success btn-xl js-scroll-trigger" href="{{ route('register') }}">Start Now!</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                 <h2 class="text-white mt-0">All in one place!</h2>
                                 <hr class="divider light my-4" />
                                 <p class="text-white-50 mb-4">Managing your expenses has never been so easy before! Just simply input your sources of income and expenses and in an instant, you can find where you must manage your money well!</p>
-                                <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+                                <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ route('register') }}">Get Started!</a>
                             </div>
                         </div>
                     </div>
