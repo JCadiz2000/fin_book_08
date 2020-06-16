@@ -42,27 +42,39 @@
             <div class="row">
                 <div class="col"></div>
                 <div class="col align-slef-center">
-                    <div class="alert alert-info" role="alert" id="notice">
-                        Select a date to generate a report!
-                    </div>
-                    <div class="alert alert-danger" role="alert" id="warning" style="display:none;">
-                        Please select a date first to generate a report!
-                    </div>
                     <div class="alert alert-info" role="alert" id="notif" style="display:none;">
                         No record can be found for this date!
+                    </div>
+                    <div class="alert alert-danger" role="alert" id="warning" style="display:none;">
+                        Please select a date to generate a report!
                     </div>
                 </div>
                 <div class="col"></div>
             </div>
-            <div class="row charts" style="display:none;">
+            <div class="row charts">
+                <div class="col-xl-12 mb-5 text-center">
+                    <h1 class="h3 mb-2 text-gray-800"><span id="reportDate"></span> Report</h1>
+                </div>
                 <div class="col-xl-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Monthly Income and Expense Chart</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Monthly Income Chart</h6>
                         </div>
                         <div class="card-body">
                             <div class="chart-area">
-                                <canvas id="monthChart"></canvas>
+                                <canvas id="monthIncomeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Monthly Expense Chart</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="monthExpenseChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -115,126 +127,206 @@
 
 @section('scriptMonthly')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script>
-
-var ctxMonth = document.getElementById("monthChart");
-var barChart = new Chart(ctxMonth,{
-    type:'bar',
-    data: {
-        datasets: [{
-          label: "Income",
-          backgroundColor: "rgba(28, 200, 138, 0.5)",
-          hoverBackgroundColor: "rgba(28, 200, 138, 1)",
-          borderColor: "rgba(231, 74, 59, 1)",
-
-        },{
-          label: "Expenses",
-          backgroundColor: "rgba(231, 74, 59, 0.5)",
-          hoverBackgroundColor: "rgba(231, 74, 59, 1)",
-          borderColor: "rgba(231, 74, 59, 1)",
-
-        }],
-        
-    },
-    options: {
-        title:{
-            display:true,
-            fontSize: 25,
+var ctxMonthIncome = document.getElementById("monthIncomeChart");
+var ChartIncome = new Chart(ctxMonthIncome, {
+  type: 'bar',
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    datasets: [{
+      label: "Income",
+      backgroundColor: "rgba(28, 200, 138, 0.5)",
+      hoverBackgroundColor: "rgba(28, 200, 138, 1)",
+      borderColor: "rgba(28, 200, 138, 1)",
+      
+    }],  
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },  
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
         },
-        maintainAspectRatio: false,
-        layout: {
-            padding: {
-            left: 10,
-            right: 25,
-            top: 0,
-            bottom: 0
-            }
-        },  
-        scales: {
-            xAxes: [{
-            time: {
-                unit: 'date'
-            },
-            gridLines: {
-                display: false,
-                drawBorder: false
-            },
-            ticks: {
-                // maxTicksLimit: 10
-            }
-            }],
-            yAxes: [{
-            ticks: {
-                beginAtZero:true,
-                maxTicksLimit: 5,
-                padding: 10,
-                // Include a dollar sign in the ticks
-                callback: function(value, index, values) {
-                return '₱' + number_format(value);
-                }
-            },
-            gridLines: {
-                color: "rgb(234, 236, 244)",
-                zeroLineColor: "rgb(234, 236, 244)",
-                drawBorder: false,
-                borderDash: [2],
-                zeroLineBorderDash: [2]
-            }
-            }],
+        gridLines: {
+          display: false,
+          drawBorder: false
         },
-        legend: {
-            display: false
-        },
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 14,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            mode: 'index',
-            caretPadding: 10,
-            callbacks: {
-            label: function(tooltipItem, chart) {
-                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
-            }
-            }
+        ticks: {
+          maxTicksLimit: 12
         }
+      }],
+      yAxes: [{
+        ticks: {
+           beginAtZero:true,
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '₱' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
+        }
+      }
     }
+  }
 });
-function genBar(selectedDate,dateNum,months) {
-    var days=[];
-    var expenseData = [];
-    var incomeData = [];
-    var monthDays = new Date(2020,dateNum+1,0).getDate();
-    for(i=1 ;i<=monthDays;i++){
-        expenseData.push(0);
-        incomeData.push(0);
-        days.push(i);
+
+$(document).ready(function() {
+   var incomeData = [];
+   for(i=0;i<12;i++){
+      incomeData.push(0);
+   }
+   @foreach($data['ledger'] as $ledger)
+      @foreach($data['category'] as $category)
+      if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Income"){
+         incomeData[new Date("{{$ledger->date}}").getMonth()] += {{$ledger->amount}}; 
+      }
+      @endforeach
+   @endforeach
+   ChartIncome.data.datasets[0].data = incomeData;
+   ChartIncome.update();
+});
+
+</script>
+<script>
+var ctxMonthExpense = document.getElementById("monthExpenseChart");
+var ChartExpense = new Chart(ctxMonthExpense, {
+  type: 'bar',
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    datasets: [{
+      label: "Expenses",
+      backgroundColor: "rgba(231, 74, 59, 0.5)",
+      hoverBackgroundColor: "rgba(231, 74, 59, 1)",
+      borderColor: "rgba(231, 74, 59, 1)",
+    }],
+    
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },  
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        ticks: {
+          maxTicksLimit: 12
+        }
+      }],
+      yAxes: [{
+        ticks: {
+           beginAtZero:true,
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '₱' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
+        }
+      }
     }
-    @foreach($data['ledger'] as $ledger) 
-        if(months[new Date("{{$ledger->date}}").getMonth()] == selectedDate){ 
-        @foreach($data['category'] as $category)      
-            if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Expense"){
-                expenseData[new Date("{{$ledger->date}}").getDate()-1] += {{$ledger->amount}}; 
-            }else if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Income"){
-                incomeData[new Date("{{$ledger->date}}").getDate()-1] += {{$ledger->amount}}; 
-            }
-        @endforeach    
-        }    
-    @endforeach
-    barChart.data.datasets[0].data = incomeData;
-    barChart.data.datasets[1].data = expenseData;
-    barChart.data.labels = days;
-    barChart.options.title.text = selectedDate+" Report";
-    barChart.update();
-};
+  }
+});
+
+$(document).ready(function() {
+   var expenseData = [];
+   for(i=0;i<12;i++){
+      expenseData.push(0);
+   }
+   @foreach($data['ledger'] as $ledger)
+      @foreach($data['category'] as $category)
+      if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Expense"){
+         expenseData[new Date("{{$ledger->date}}").getMonth()] += {{$ledger->amount}}; 
+      }
+      @endforeach
+   @endforeach
+   ChartExpense.data.datasets[0].data = expenseData;
+   ChartExpense.update();
+});
+
 </script>
 <script>
 
@@ -243,7 +335,6 @@ var ctxDaily = document.getElementById("dailyChart");
 var lineChart = new Chart(ctxDaily,{
     type: 'line',
     data: {
-        labels: ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm'],
         datasets: [{
             label: "Expenses",
             lineTension: 0.3,
@@ -325,20 +416,24 @@ var lineChart = new Chart(ctxDaily,{
     } 
 });
 function genLine(selectedDate,dateNum,months) {
-    let data =[];
-    for(i=0;i<24;i++){
-        data.push(0);
+    var days=[];
+    var expenseData = [];
+    var monthDays = new Date(2020,dateNum+1,0).getDate();
+    for(i=1 ;i<=monthDays;i++){
+        expenseData.push(0);
+        days.push(selectedDate+" "+i);
     }
     @foreach($data['ledger'] as $ledger) 
         if(months[new Date("{{$ledger->date}}").getMonth()] == selectedDate){ 
         @foreach($data['category'] as $category)      
             if("{{$ledger->category}}" == "{{$category->description}}" && "{{$category->type}}" == "Expense"){
-                data[new Date("{{$ledger->created_at}}").getHours()] += {{$ledger->amount}}; 
+                expenseData[new Date("{{$ledger->date}}").getDate()-1] += {{$ledger->amount}}; 
             }
         @endforeach    
         }    
     @endforeach
-    lineChart.data.datasets[0].data= data;
+    lineChart.data.labels = days;
+    lineChart.data.datasets[0].data = expenseData;
     lineChart.update();
 };
 </script>
@@ -376,10 +471,28 @@ var expenseChart = new Chart(ctxExpense,{
       yPadding: 15,
       displayColors: false,
       caretPadding: 10,
+      callbacks:{
+        // label: function(tooltipItem, data) {
+        //   var dataset = data.datasets[tooltipItem.datasetIndex];
+        //   var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+        //     return previousValue + currentValue;
+        //   });
+        //   var currentValue = dataset.data[tooltipItem.index];
+        //   var precentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        //   return precentage + "%";
+        // }
+      }
     },
     legend: {
       display: true,
       position: 'bottom'
+    },
+    plugins:{
+        labels:{
+            render: 'percentage',
+            fontColor: '#fff',
+            precision: 2
+        }
     },
   },
 });   
@@ -410,10 +523,9 @@ function updateChart(){
     var set=0;
     if($("#date").val()==null){
         $("#warning").show();
-        $("#notice").hide();
+        $(".charts").hide();
     }else{
         $("#warning").hide();
-        $("#notice").hide();
 
         @foreach($data['ledger'] as $ledger)      
             if(months[new Date("{{$ledger->date}}").getMonth()]==$("#date").val()&& set!=1){
@@ -421,8 +533,9 @@ function updateChart(){
                 $(".charts").show();
                 $("#notif").hide();
                 genPie($("#date").val(),months);
-                genBar($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
                 genLine($("#date").val(),new Date("{{$ledger->date}}").getMonth(),months);
+                $("#reportDate").empty();
+                $("#reportDate").append($("#date").val());
             }
         @endforeach
             else if(set==0){
@@ -432,5 +545,13 @@ function updateChart(){
     }
     
 };
+</script>
+<script>
+$(document).ready(function() {
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    genPie(months[new Date().getMonth()],months);
+    genLine(months[new Date().getMonth()],new Date().getMonth(),months);
+    $("#reportDate").append(months[new Date().getMonth()]);
+});  
 </script>
 @endsection
