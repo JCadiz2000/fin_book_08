@@ -482,15 +482,7 @@ var expenseChart = new Chart(ctxExpense,{
       displayColors: false,
       caretPadding: 10,
       callbacks:{
-        // label: function(tooltipItem, data) {
-        //   var dataset = data.datasets[tooltipItem.datasetIndex];
-        //   var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
-        //     return previousValue + currentValue;
-        //   });
-        //   var currentValue = dataset.data[tooltipItem.index];
-        //   var precentage = Math.floor(((currentValue / total) * 100) + 0.5);
-        //   return precentage + "%";
-        // }
+
       }
     },
     legend: {
