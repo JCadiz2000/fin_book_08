@@ -199,7 +199,7 @@ var dashboardChart = new Chart(ctxDash, {
   data: {
     labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     datasets: [{
-      label: "Savings",
+      label: "Income",
       backgroundColor: "rgba(28, 200, 138, 0.5)",
       hoverBackgroundColor: "rgba(28, 200, 138, 1)",
       borderColor: "rgba(28, 200, 138, 1)",

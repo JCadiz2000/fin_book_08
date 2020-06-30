@@ -42,7 +42,7 @@ class LedgerController extends Controller
         $userid = Auth::user()->id;
         $ledger = new Ledger();
         
-        $ledger->date = request('date');
+        $ledger->date = now();
         $ledger->description = request('description');
         $ledger->category = request('category');
         $ledger->amount = request('amount');

@@ -38,7 +38,7 @@
                             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                                 @if (Route::has('login'))
                                     @auth
-                                        <li class="nav-item"><a class="nav-link" href="{{ url('/account') }}">My Account</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ url('/account') }}"> {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </a></li>
                                     @else
                                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                                         @if (Route::has('register'))
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-lg-8 align-self-baseline">
                                 <p class="text-white-75 font-weight-light mb-5">Financial Notebook gets your monthly income and records your daily, weekly and monthly expenses to help you manage your money wisely.</p>
-                                <a class="btn btn-success btn-xl js-scroll-trigger" href="#about">Start Now!</a>
+                                <a class="btn btn-success btn-xl js-scroll-trigger" href="{{ route('register') }}">Start Now!</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                 <h2 class="text-white mt-0">All in one place!</h2>
                                 <hr class="divider light my-4" />
                                 <p class="text-white-50 mb-4">Managing your expenses has never been so easy before! Just simply input your sources of income and expenses and in an instant, you can find where you must manage your money well!</p>
-                                <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+                                <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ route('register') }}">Get Started!</a>
                             </div>
                         </div>
                     </div>
@@ -160,14 +160,15 @@
                             </div>
                         </div>
                         <div class="row">
+                        
                             <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                                 <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                                <div>0932 415 2157</div>
+                                <div>0932 415 2157 <br> 0995 769 6059</div>
                                 
                             </div>
                             <div class="col-lg-4 mr-auto text-center">
                                 <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                                ><a class="d-block" href="#">cadizjayson25@yahoo.com</a>
+                                ><a class="d-block" href="#">cadizjayson25@yahoo.com <br>uy.brantfrancis@gmail.com</a>
                             </div>
                         </div>
                     </div>

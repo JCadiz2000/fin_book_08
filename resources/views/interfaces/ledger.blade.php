@@ -18,7 +18,6 @@
                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">My Ledgers</h6>
                   <div>
-                     <button id="editBtn" type="button" class="btn btn-secondary" ><i class="far fa-edit"></i> Edit</button>
                      <button id="closeBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-times"></i> Cancel</button>
                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Create"><i class="fas fa-plus"></i> Add</button>
                   </div>
@@ -52,7 +51,7 @@
                                     @endif
                                 @endif                               
                               @endforeach
-                              <td class="optionRow" style="display:none;"> <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-{{$ledger->id}}"><i class="fas fa-times"></i> Delete</button> </td>                             
+                              <td width="80px"> <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-{{$ledger->id}}"><i class="fas fa-times"></i> Delete</button> </td>                             
                            </tr>
                            @endforeach
                         </tbody>
