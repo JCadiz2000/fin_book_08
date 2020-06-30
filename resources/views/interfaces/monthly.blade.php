@@ -481,8 +481,12 @@ var expenseChart = new Chart(ctxExpense,{
       yPadding: 15,
       displayColors: false,
       caretPadding: 10,
-      callbacks:{
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var dataLabel = data.labels[tooltipItem.index];
 
+          return dataLabel + ': ₱' + number_format(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]);
+        }
       }
     },
     legend: {
@@ -496,6 +500,7 @@ var expenseChart = new Chart(ctxExpense,{
             precision: 2
         }
     },
+    
   },
 });   
 function genPie(selectedDate,months) {
@@ -503,13 +508,13 @@ let data=[];
 @foreach($data['category'] as $category)
     @if($category->type == "Expense")
         labels.push("{{$category->description}}")
-        var count = 0;
+        var amount = 0;
         @foreach($data['ledger'] as $ledger)
             if("{{$ledger->category}}"=="{{$category->description}}" && months[new Date("{{$ledger->date}}").getMonth()]==selectedDate){
-                count++;
+                amount+=parseInt("{{$ledger->amount}}");
             }
         @endforeach
-        data.push(count);
+        data.push(amount);
         bgColor.push(getRandomColor());
     @endif
 @endforeach
